@@ -16,7 +16,14 @@ import { Page404Component } from './core/components/page404/page404.component';
 import { SearchresultComponent } from './core/components/searchresult/searchresult.component';
 import { SearchComponent } from './core/layout/components/header/search/search.component';
 import { AuthinterceptorService } from './shared/services/auth/authinterceptor.service';
+
+/*Firebase*/
 import { SharedModule } from './shared/shared.module';
+import { environment} from "../environments/environment";
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule} from "@angular/fire/compat";
+import { FirebaseService} from "./shared/services/firebase/firebase.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,12 +42,15 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [
+    FirebaseService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthinterceptorService,

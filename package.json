@@ -1,7 +1,7 @@
 {
   "name": "back2buy shop",
   "version": "0.0.0",
-  "author":"Anish Verma",
+  "author": "Anish Verma",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -15,6 +15,7 @@
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
     "@angular/core": "^15.2.0",
+    "@angular/fire": "^19.1.0",
     "@angular/forms": "^15.2.0",
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",

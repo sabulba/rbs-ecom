@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/modules/product/model';
 import { ProductService } from 'src/app/modules/product/services/product.service';
+import {FirebaseService} from "../../../shared/services/firebase/firebase.service";
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { ProductService } from 'src/app/modules/product/services/product.service
 })
 export class HomeComponent implements OnInit{
   products:Product[]=[];
+  projects:any[]=[];
   skeletons:number[]=[...new Array(6)];
   error!:string;
   isLoading=false;
@@ -25,10 +27,16 @@ export class HomeComponent implements OnInit{
 
   ];
 
-  constructor(private _productService:ProductService){
+  constructor(
+    private _productService:ProductService,
+    private _firebaseService:FirebaseService){
   }
   ngOnInit(): void {
-   this.newArrivalProducts();
+  // this.newArrivalProducts();
+    this._firebaseService.getDocuments("projects").then(data=>{
+      this.projects=data;
+      console.log(this.projects);
+    });
   }
   newArrivalProducts(){
     this.isLoading=true;
